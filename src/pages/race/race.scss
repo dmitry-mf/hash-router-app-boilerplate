@@ -1,0 +1,15 @@
+.header {
+    color: blue;
+}
+
+.content {
+    color: aqua;
+
+    & .global-class {
+        color: black;
+    }
+}
+
+.footer {
+    color: green;
+}

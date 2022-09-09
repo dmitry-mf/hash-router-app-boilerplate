@@ -7,6 +7,8 @@ export class PageGarage {
     constructor(garageService: GarageService) {
         this.garageService = garageService;
         this.init();
+
+        this.fetchCars();
     }
 
     async init() {
@@ -21,8 +23,10 @@ export class PageGarage {
         root.innerHTML = '';
 
         root.appendChild(pageNodes);
+    }
 
+    fetchCars = async () => {
         const cars = await this.garageService.getCars();
         console.log(cars);
-    }
+    };
 }

@@ -2,6 +2,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseConfig = {
     devtool: 'eval-source-map',
@@ -13,9 +14,16 @@ const baseConfig = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     // Creates `style` nodes from JS strings
-                    'style-loader',
-                    // Translates CSS into CommonJS
-                    'css-loader',
+                    { loader: MiniCssExtractPlugin.loader },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[name]__[local]',
+                            },
+                        },
+                    },
                     // Compiles Sass to CSS
                     'sass-loader',
                 ],
@@ -42,6 +50,10 @@ const baseConfig = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'styles/[name].css',
+            experimentalUseImportModule: true,
         }),
         new CleanWebpackPlugin(),
     ],

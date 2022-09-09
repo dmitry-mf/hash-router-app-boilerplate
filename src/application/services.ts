@@ -19,7 +19,7 @@ export type AppServices = {
     [SERVICES.GARAGE_SERVICE]: GarageService;
 };
 
-class Services {
+export class Services {
     services: AppServices;
 
     static get instance() {

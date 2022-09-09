@@ -25,8 +25,8 @@ class App {
 
     registerPages() {
         pages.forEach((page) => {
-            this.registerAppRoute(page.route, page.name);
             services.dependencyResolver.register(page);
+            this.registerAppRoute(page.route, page.name);
         });
     }
 
