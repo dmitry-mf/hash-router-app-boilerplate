@@ -1,5 +1,5 @@
 export class GarageService {
     getCars() {
-        return null;
+        return new Promise((resolve) => setTimeout(() => resolve([]), 1000));
     }
 }

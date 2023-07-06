@@ -1,4 +1,5 @@
 import { GarageService } from '../services/garageService';
+import { RaceService } from '../services/raceService';
 import { DependencyResolver } from './helpers/dependencyResolver';
 import { Router } from './router';
 
@@ -6,6 +7,7 @@ export enum SERVICES {
     ROUTER = 'router',
     DEPENDENCY_RESOLVER = 'dependencyResolver',
     GARAGE_SERVICE = 'garageService',
+    RACE_SERVICE = 'raceService',
 }
 
 interface Service<A = unknown, T = unknown> {
@@ -17,6 +19,7 @@ export type AppServices = {
     [SERVICES.ROUTER]: Router;
     [SERVICES.DEPENDENCY_RESOLVER]: DependencyResolver;
     [SERVICES.GARAGE_SERVICE]: GarageService;
+    [SERVICES.RACE_SERVICE]: RaceService;
 };
 
 export class Services {
@@ -30,7 +33,7 @@ export class Services {
         this.services = {} as AppServices;
     }
 
-    registerService = <T = unknown>(name: string, Service: Service<T>, ...args: T[]) => {
+    registerService = <T = unknown>(name: string, Service: Service<T>, args: T[]) => {
         this.services[name] = new Service(...args);
         return this;
     };

@@ -16,7 +16,7 @@ export const pages = [
         name: PAGES.RACE,
         route: ROUTES.RACE,
         model: PageRace,
-        services: [SERVICES.ROUTER, SERVICES.DEPENDENCY_RESOLVER],
+        services: [SERVICES.ROUTER, SERVICES.DEPENDENCY_RESOLVER, SERVICES.RACE_SERVICE],
     },
     {
         name: PAGES.ERROR,
@@ -28,6 +28,6 @@ export const pages = [
         name: PAGES.GARAGE,
         route: ROUTES.GARAGE,
         model: PageGarage,
-        services: [SERVICES.GARAGE_SERVICE],
+        services: [SERVICES.GARAGE_SERVICE, SERVICES.ROUTER],
     },
 ];

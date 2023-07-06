@@ -7,7 +7,7 @@ describe('services', () => {
 
     it('should register service', () => {
         class ServiceMock {}
-        ServicesInstance.registerService('testService', ServiceMock);
+        ServicesInstance.registerService('testService', ServiceMock, []);
         expect(ServicesInstance.services['testService'] instanceof ServiceMock).toBe(true);
     });
 });

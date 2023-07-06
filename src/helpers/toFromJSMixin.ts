@@ -1,22 +1,23 @@
 import { BasePage } from '../pages/base-page';
 
-interface ToFromJSExtender {
+interface IToFromJSExtender {
     toJS: () => Record<string, string>;
     fromJS: (model: Record<string, string>) => void;
 }
 
 export const toFromJSMixin = (SuperClass: typeof BasePage) =>
-    class ToFromJSExtender extends SuperClass {
+    class ToFromJSExtender extends SuperClass<never[]> implements IToFromJSExtender {
+        model = {};
         toJS() {
             return {
-                ...Object.entries(this).reduce(
-                    (fields, [key, value]) => ({ ...fields, [key]: (value && value.toString()) || null }),
+                ...Object.entries(this.model).reduce(
+                    (fields, [key, value]) => ({ ...fields, [key]: String(value) || null }),
                     {}
                 ),
             };
         }
 
-        fromJS(model: Record<string, string>) {
-            Object.assign(this, model);
+        fromJS(model = {}) {
+            Object.assign(this.model, model);
         }
     };
